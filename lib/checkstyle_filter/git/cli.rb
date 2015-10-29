@@ -24,7 +24,7 @@ module CheckstyleFilter
 
         abort if !data || data.empty?
 
-        command = ['git', 'diff', '--no-color', commit_ish].compact
+        command = ['git', 'diff', '--no-color', '--no-ext-diff', commit_ish].compact
         git_diff, _, _ = Open3.capture3(*command)
         puts ::CheckstyleFilter::Git::Filter.filter(data, git_diff)
       end
